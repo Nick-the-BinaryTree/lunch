@@ -8,7 +8,7 @@ $('#submitName').click(function() {
   )
 })
 
-// wrap in "choose venues" button click like above later
+// TODO wrap in "choose venues" button click like above later
 function setPrefs() {
   $.post('http://localhost:3000/user/'+id,
     { prefers: ['Subway', 'Dunkin', 'Olive Garden'] },
@@ -17,7 +17,7 @@ function setPrefs() {
   )
 }
 
-// wrap in "search" button click
+// TODO wrap in "search" button click
 function search() {
   $.get("http://localhost:3000/user/"+id+"/search", function(data) {
     console.log(data)

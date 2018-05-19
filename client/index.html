@@ -22,10 +22,11 @@
             <!-- Step 1: Profile Establishment -->
             <div id="step1">
                 <h2>Wanna get lunch?</h2>
-                <p>Find friends and make new ones for lunch, dinner, breakfast, and anything in between!</p>
-                <input id="nameBox" type="text" value="Name:">
+                <h3>Find friends and make new ones for lunch, dinner, breakfast, and anything in between!</h3>
+                <p>Name:</p>
+                <input id="nameBox" type="text">
                 <!-- Add Later: Age + Gender (both user's and preference); meal type -->
-                <input id="submitName" type="submit" value="Submit">
+                <input id="submitName" type="submit" value="Next">
                 <!-- Terms & Conditions -->
             </div>
 
@@ -37,12 +38,13 @@
 
             <!-- Step 3: Set Location -->
             <div id="step3">
-                <!-- TODO Call to geolocating API -->
-                <!-- TODO Call to maps API -->
-                <input type="text" value="Address:">
-                <input type="submit" value="Submit">
-                <!-- TODO Call to geocoding API -->
-                <!-- TODO Call to maps API -->
+                <div id="map"></div>  <!-- This empty div will display Google Maps -->
+                <div id="mapGUI">
+                    <p>Address (please use commas where appropriate):</p>
+                    <input id="mapBox" type="text">
+                    <input id="mapIt" type="submit" value="Submit">
+                    <input id="submitMap" type="submit" value="Next">
+                </div>
             </div>
 
             <!-- Step 4: Restaurant Vetting -->
@@ -50,7 +52,7 @@
                 <!-- TODO Call to maps API -->
                 <!-- TODO Call to places API -->
                 <!-- TODO Some kind of script listing the results with a yea/nea option -->
-                <input type="submit" value="Submit">
+                <input id="submitVet" type="submit" value="Next">
             </div>
 
             <!-- Step 4: Assignment -->
@@ -64,5 +66,8 @@
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/lunchAPI.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs&callback=initMap"
+    async defer></script>
+    <script type="text/javascript" src="js/gmaps.js"></script>
 
 </html>
