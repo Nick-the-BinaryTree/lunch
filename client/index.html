@@ -10,7 +10,6 @@
     <head>
         <title>lunch?</title>
         <meta name="Description" content="Meet up with friends and make new ones for lunch, dinner, or breakfast!"/>
-        <!-- links for stylesheet and scripts will go here -->
     </head>
 
     <body>
@@ -18,7 +17,51 @@
         <h1 id="header">lunch?</h1>
         <!-- Webpage body -->
         <div id="body">
-            <!-- body will go here -->
+
+            <!-- Step 1: Profile Establishment -->
+            <div id="step1">
+                <h2>Wanna get lunch?</h2>
+                <p>Find friends and make new ones for lunch, dinner, breakfast, and anything in between!</p>
+                <input id="nameBox" type="text" value="Name:">
+                <!-- Add Later: Age + Gender (both user's and preference); meal type -->
+                <input id="submitName" type="submit" value="Submit">
+                <!-- Terms & Conditions -->
+            </div>
+
+            <!-- Step 2: Genre Vetting -->
+            <div id="step2">
+                <!-- Step 2 goes here -->
+                <!--  Do this later   -->
+            </div>
+
+            <!-- Step 3: Set Location -->
+            <div id="step3">
+                <!-- TODO Call to geolocating API -->
+                <!-- TODO Call to maps API -->
+                <input type="text" value="Address:">
+                <input type="submit" value="Submit">
+                <!-- TODO Call to geocoding API -->
+                <!-- TODO Call to maps API -->
+            </div>
+
+            <!-- Step 4: Restaurant Vetting -->
+            <div id="step4">
+                <!-- TODO Call to maps API -->
+                <!-- TODO Call to places API -->
+                <!-- TODO Some kind of script listing the results with a yea/nea option -->
+                <input type="submit" value="Submit">
+            </div>
+
+            <!-- Step 4: Assignment -->
+            <div id="step4">
+                <h2>You're getting lunch?</h2>
+                <p>You've been paired with</p> <!-- TODO get name to appear here --> <p>to each at</p> <!-- TODO get name of restaurant to appear here --><p>!</p>
+            </div>
+
         </div>
+    </body>
+
+    <script type="text/javascript" src="js/lunchAPI.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </html>
