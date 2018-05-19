@@ -5,20 +5,60 @@ const BodyParser = require('koa-body')
 const app = new Koa()
 const router = new Router()
 
-let idCount = 0, users = []
+let idCount = 0
+let users = [{id: '5', name: 'Jake', prefers: ['Starbucks', 'Dunkin', 'Hipster Brew']},
+  {id: '6', name: 'Katie', prefers: ['Subway', 'Dunkin', 'Starbucks', 'Nebraska Steak']}]
 
 const getUserIndex = (id) => {
-  console.log(users.length)
   for (let i = 0; i < users.length; i++) {
-    console.log(users[i].id + " " + typeof users[i].id)
     if (id === users[i].id)
       return i
     }
   return null
 }
 
+const findOverlap = (id) => {
+  const searcher = users[getUserIndex(id)], matches = []
+
+  for (let i = 0; i < users.length; i++) {
+    if (id === users[i].id) {
+      continue
+    }
+
+    const candidate = users[i]
+    const knownCandidatePrefs = {}
+    let k = 0;
+
+    for (let j = 0; j < searcher.prefers.length; j++) {
+      if (searcher.prefers[j] in knownCandidatePrefs) {
+        matches.push({id: candidate.id, name: candidate.name,
+          venue: searcher.prefers[j] })
+      } else {
+        for (; k < candidate.prefers.length; k++) {
+          if (searcher.prefers[j] === candidate.prefers[k]) {
+            matches.push({id: candidate.id, name: candidate.name,
+              venue: searcher.prefers[j] })
+          } else {
+            knownCandidatePrefs[candidate.prefers[k]] = true
+          }
+        }
+      }
+    }
+  }
+  return matches
+}
+
+const randomPick = (matches) => {
+  if (!matches) return null
+  return matches[Math.floor(Math.random()*matches.length)]
+}
+
 router.get('/user/:id', ctx => {
   ctx.body = users[getUserIndex(ctx.params.id)]
+})
+
+router.get('/user/:id/search', ctx => {
+  ctx.body = randomPick(findOverlap(ctx.params.id))
 })
 
 router.post('/user/new', ctx => {
@@ -33,13 +73,11 @@ router.post('/user/new', ctx => {
 
 router.post('/user/:id', ctx => {
   if (ctx.request.body && ctx.request.body.prefers && ctx.params.id) {
-    console.log(ctx.params.id + " " + typeof ctx.params.id + " " + getUserIndex(ctx.params.id))
     users[getUserIndex(ctx.params.id)].prefers = ctx.request.body.prefers
-    console.log("got here 2")
     ctx.body = users[getUserIndex(ctx.params.id)].prefers
     return
   }
-  ctx.body = "No preferance update"
+  ctx.body = "No preference update"
 })
 
 app.use(BodyParser()).use(router.allowedMethods()).use(router.routes())
