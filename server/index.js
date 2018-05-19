@@ -20,8 +20,10 @@ const getUserIndex = (id) => {
 const findOverlap = (id) => {
   const searcher = users[getUserIndex(id)], matches = []
 
+  if (!searcher.prefers) return
+
   for (let i = 0; i < users.length; i++) {
-    if (id === users[i].id) {
+    if (id === users[i].id || !users[i].prefers) {
       continue
     }
 
@@ -54,6 +56,8 @@ const randomPick = (matches) => {
 }
 
 router.get('/user/:id', ctx => {
+  // ctx.set({"Access-Control-Allow-Origin": "*",
+  //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"})
   ctx.body = users[getUserIndex(ctx.params.id)]
 })
 
@@ -78,6 +82,12 @@ router.post('/user/:id', ctx => {
     return
   }
   ctx.body = "No preference update"
+})
+
+app.use(async (ctx, next) => {
+  ctx.set({"Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"})
+  await next()
 })
 
 app.use(BodyParser()).use(router.allowedMethods()).use(router.routes())
