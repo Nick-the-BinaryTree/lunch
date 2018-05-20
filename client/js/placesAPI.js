@@ -1,7 +1,7 @@
 // wrap in "choose venues" button click like above later
 
 function getVenues() {
-  var nyc = new google.maps.LatLng(-33.8670522,151.1957362)
+  var nyc = new google.maps.LatLng(40.71 , -74.01)
 
   var map = new google.maps.Map(document.getElementById('map'), {
       center: nyc,
@@ -24,11 +24,10 @@ function buildOptions(data) {
     $('<div class="option"><label>' + data[i].name + '</label></div>')
       .appendTo($('#options_container'))
   }
+  $(".option").click(function(e) {
+    $(this).toggleClass("option_picked")
+  });
 }
-
-$(".option").click(function(e) {
-  $(this).toggleClass("option_picked")
-});
 
 $("#prefSubmit").click(function(e) {
   e.preventDefault();
@@ -39,4 +38,4 @@ $("#prefSubmit").click(function(e) {
   setPrefs(results)
 })
 
-// getVenues()
+getVenues()
