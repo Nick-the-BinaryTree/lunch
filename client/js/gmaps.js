@@ -13,7 +13,7 @@ var location;
 
 /* latitude & longitude: The user's latitude and longitude. By default, this is
  * set to   */
-var latitude = 40.7, longitude = -74.0;
+var latitude = 40.71, longitude = -74.01;
 
 /* geolocate:
  * Uses the Google Maps API to attempt to get a user's location.
@@ -81,27 +81,22 @@ $('#submitName').click(function() {
     document.getElementById('step3').style.visibility = 'visible';
     // geolocate();  // Disabled to reduce API calls
     // address();  // Disabled to reduce API calls
-    // $('#mapBox').value(location); // Disabled to reduce API calls
+    //$('#mapBox').value(location);
     initMap();
 })
 
 // Step 2 would go here
 
-// Sets up the map after the user inputs an address. This is a part of Step 3.
+/* // Sets up the map after the user inputs an address. This is a part of Step 3.
 $('#mapIt').click(function() {
     location = $('#mapBox').val();
-    coordinates();
-    initMap();
-})
+    console.log(location);
+    // coordinates();
+    // initMap();
+}) */
 
 // On end of Step 3:
-$('#submitMap').click(function() {
-
-    // On to Step 4 (handled by Nick)!
-})
-
-// On end of Step 4:
-$('#submitVet').click(function() {
-    document.getElementById('step4').style.visibility = 'hidden';
-    document.getElementById('step5').style.visibility = 'visible';
+$('#prefSubmit').click(function() {
+    document.getElementById('step3').style.visibility = 'hidden';
+    document.getElementById('step4').style.visibility = 'visible';
 })
