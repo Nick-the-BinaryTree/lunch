@@ -9,14 +9,13 @@
 var map;
 
 /* location: The user's location, stored as a string.  */
-var location = null;
+var location;
 
 /* latitude & longitude: The user's latitude and longitude. By default, this is
  * set to   */
-var latitude = 40.7;
-var longitude = -74.0;
+var latitude = 40.7, longitude = -74.0;
 
-/* geolocate: 
+/* geolocate:
  * Uses the Google Maps API to attempt to get a user's location.
  * Relies on jQuery.  */
 function geolocate()
@@ -53,7 +52,7 @@ function plusser()
 {
     var locPlus = location;
     for (var i = 0; i < locPlus.length; i++) {
-        // if (locPlus[i] === ',')  i = i+1;
+        // if (locPlus[i] === ',')  i = i+1;  // Shouldn't be needed
         if (locPlus[i] === ' ')  locPlus[i] = '+';
     }
     return locPlus;
@@ -77,10 +76,9 @@ function coordinates()
 $('#submitName').click(function() {
     document.getElementById('step1').style.visibility = 'hidden';
     document.getElementById('step3').style.visibility = 'visible';
-    step1
-    geolocate();
-    address();
-    $('#mapBox').value(location); // what's this..?
+    // geolocate();  // Disabled to reduce API calls
+    // address();  // Disabled to reduce API calls
+    // $('#mapBox').value(location); // Disabled to reduce API calls
     initMap();
 })
 

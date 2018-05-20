@@ -6,6 +6,7 @@
   "dependencies": {
     "koa": "^2.5.1",
     "koa-body": "^2.5.0",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "yarn": "^1.6.0"
   }
 }

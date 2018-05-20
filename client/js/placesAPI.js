@@ -39,4 +39,4 @@ $("#prefSubmit").click(function(e) {
   console.log(results);
 })
 
-//getVenues()
+// getVenues()

@@ -3,7 +3,7 @@
 
     Written by:  James Garijo-Garde and Nick Hartunian
             for: AngelHack 2018
-            on:  5/19/2018
+            on:  5/19/2018 - 5/20/2018
 -->
 <html>
 
@@ -26,6 +26,7 @@
                 <p>Name:</p>
                 <input id="nameBox" type="text">
                 <!-- Add Later: Age + Gender (both user's and preference); meal type -->
+                <br/>
                 <input id="submitName" type="submit" value="Next">
                 <!-- Terms & Conditions -->
             </div>
@@ -43,31 +44,32 @@
                     <p>Address (please use commas where appropriate):</p>
                     <input id="mapBox" type="text">
                     <input id="mapIt" type="submit" value="Submit">
+                    <br/>
                     <input id="submitMap" type="submit" value="Next">
                 </div>
             </div>
 
-            <!-- Step 4: Restaurant Vetting -->
+            <!-- Step 4: Restaurant Vetting
             <div id="step4">
-                <!-- TODO Call to maps API -->
-                <!-- TODO Call to places API -->
-                <!-- TODO Some kind of script listing the results with a yea/nea option -->
+                <!-- TODO Call to maps API
+                <!-- TODO Call to places API
+                <!-- TODO Some kind of script listing the results with a yea/nea option
                 <input id="submitVet" type="submit" value="Next">
-            </div>
+            </div> -->
 
-            <!-- Step 5: Assignment -->
+            <!-- Step 5: Assignment
             <div id="step5">
                 <h2>You're getting lunch?</h2>
-                <p>You've been paired with</p> <!-- TODO get name to appear here --> <p>to each at</p> <!-- TODO get name of restaurant to appear here --><p>!</p>
-            </div>
+                <p>You've been paired with</p> <!-- TODO get name to appear here <p>to each at</p> <!-- TODO get name of restaurant to appear here <p>!</p>
+            </div> -->
 
         </div>
-    </body>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs&callback=initMap" async defer></script>
     <script type="text/javascript" src="js/lunchAPI.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs&callback=initMap"
-    async defer></script>
-    <!-- <script type="text/javascript" src="js/gmaps.js"></script> -->
+    <script type="text/javascript" src="js/gmaps.js"></script>
+
+    </body>
 
 </html>
