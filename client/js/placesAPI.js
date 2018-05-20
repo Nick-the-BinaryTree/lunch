@@ -26,14 +26,17 @@ function buildOptions(data) {
   }
 }
 
+$(".option").click(function(e) {
+  $(this).toggleClass("option_picked")
+});
+
 $("#prefSubmit").click(function(e) {
   e.preventDefault();
-  var results = []
-  $(".option_checkbox").each(function() {
-    if (this.checked)
-      results.push(this.value)
-  })
-  console.log(results)
+  var results = [];
+  $(".option_picked").each(function() {
+      results.push(this.children[0].innerText)
+  });
+  console.log(results);
 })
 
-getVenues()
+//getVenues()
