@@ -77,6 +77,9 @@ function coordinates()
 
 // On end of Step 1:  // NOTE: Step 2 is bypassed here!
 $('#submitName').click(function() {
+    document.getElementById('step1').style.visibility = 'hidden';
+    document.getElementById('step3').style.visibility = 'visible';
+    step1
     geolocate();
     address();
     $('#ADRESTextBox').value(location);
@@ -90,4 +93,16 @@ $('#mapIt').click(function() {
     location = $('#mapBox').val();
     coordinates();
     initMap();
+});
+
+// On end of Step 3:
+$('#submitMap').click(function() {
+
+    // On to Step 4 (handled by Nick)!
+});
+
+// On end of Step 4:
+$('#submitVet').click(function() {
+    document.getElementById('step4').style.visibility = 'hidden';
+    document.getElementById('step5').style.visibility = 'visible';
 });
