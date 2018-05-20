@@ -5,9 +5,6 @@
  *         on:  5/19/2018
  */
 
-/* step: Keeps track of the step the user is on.  */
-var step = 1;
-
 /* map: The Google Maps object.  */
 var map;
 
@@ -24,9 +21,10 @@ var longitude = -74.0;
  * Relies on jQuery.  */
 function geolocate()
 {
+    var coord = { 40.7, -74.0};
     latitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').location.lat);
     longitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').location.lng);
-};
+}
 
 
 /* initMap:
@@ -39,7 +37,7 @@ function initMap()
     center: {lat: latitude, lng: longitude},
     zoom: 8  // this may need to be played with
   });
-};
+}
 
 /* address:
  * Gets a text address using the latitude and longitude. Uses the Google Maps
@@ -47,7 +45,7 @@ function initMap()
 function address()
 {
     location = parse($post('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').results[0].formatted_address);
-};
+}
 
 /* plusser:
  * Converts the spaces in a location string into plusses.  */
@@ -59,7 +57,7 @@ function plusser()
         if (locPlus[i] === ' ')  locPlus[i] = '+';
     }
     return locPlus;
-};
+}
 
 /* coordinates:
  * Gets numerical coordinates using the written address. Uses the Google Maps
@@ -69,7 +67,7 @@ function coordinates()
     var temp = plusser();
     latitude = parseFloat($.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + temp +'&key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').results[0].geometry.lat);
     longitude = parseFloat($.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + temp +'&key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').results[0].geometry.lng);
-};
+}
 
 
 
@@ -82,9 +80,9 @@ $('#submitName').click(function() {
     step1
     geolocate();
     address();
-    $('#ADRESTextBox').value(location);
+    $('#mapBox').value(location); // what's this..?
     initMap();
-});
+})
 
 // Step 2 would go here
 
@@ -93,16 +91,16 @@ $('#mapIt').click(function() {
     location = $('#mapBox').val();
     coordinates();
     initMap();
-});
+})
 
 // On end of Step 3:
 $('#submitMap').click(function() {
 
     // On to Step 4 (handled by Nick)!
-});
+})
 
 // On end of Step 4:
 $('#submitVet').click(function() {
     document.getElementById('step4').style.visibility = 'hidden';
     document.getElementById('step5').style.visibility = 'visible';
-});
+})
