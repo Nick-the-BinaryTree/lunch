@@ -12,28 +12,36 @@ $('#submitName').click(function() {
 function setPrefs() {
   $.post('http://localhost:3000/user/'+id,
     { prefers: ['Subway', 'Dunkin', 'Olive Garden'] },
-    function(data) { console.log(data); enterSearchMode(); },
+    function(data) { enterSearchMode(); },
     'json'
   )
 }
 
 function search() {
+  let res = null;
+
   $.get("http://localhost:3000/user/"+id+"/search", function(data) {
-    console.log(data)
-    return data
+    console.log(data);
+    res = data;
   })
+  console.log(res)
+  return res;
 }
 
 // TODO wrap in "search" button click
 function enterSearchMode() {
+  var count = 0;
   var intervalId = setInterval(function() {
-    var result = search();
-
-    if (result) {
+    if (count >= 5){
       clearInterval(intervalId);
-      console.log(result);
-      return
+      return;
     }
-    console.log("nothing yet")
-  })
+    $.get("http://localhost:3000/user/"+id+"/search", function(data) {
+      if (data) {
+        console.log(data);
+        count = 5;
+      }
+    })
+    count++;
+  }, 2000)
 }
