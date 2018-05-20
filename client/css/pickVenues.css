@@ -1,0 +1,29 @@
+#options_container {
+
+}
+
+.option {
+  width: 25em;
+  text-align: center;
+  padding: 1em;
+  margin-bottom: 2em;
+  vertical-align: center;
+  background: #ffa4a2;
+  border-radius: 25px;
+}
+
+.option_picked {
+  background: #98fb98;
+}
+
+.option > label {
+  font-size: 2em;
+  font-family: "sans";
+}
+
+#prefSubmit {
+  font-size: : 2em;
+  padding: 1em;
+  margin: 1em;
+  margin-left: 1.5em;
+}
