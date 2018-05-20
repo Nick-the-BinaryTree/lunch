@@ -21,6 +21,11 @@
   font-family: "sans";
 }
 
+#result {
+  font-size: 2em;
+  font-family: "sans";
+}
+
 #prefSubmit {
   font-size: : 2em;
   padding: 1em;

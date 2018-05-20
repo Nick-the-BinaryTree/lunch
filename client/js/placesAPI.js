@@ -21,7 +21,7 @@ function getVenues() {
 function buildOptions(data) {
   for (var i = 0; i < data.length; i++) {
     console.log(data[i])
-    $('<div class="option"><label>' + data[i].name + '</label><input type="checkbox" class="option_checkbox" value="' + data[i].name + '" /></div>')
+    $('<div class="option"><label>' + data[i].name + '</label></div>')
       .appendTo($('#options_container'))
   }
 }
