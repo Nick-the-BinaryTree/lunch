@@ -8,17 +8,18 @@ const router = new Router()
 let idCount = 0
 let users = [{id: '5', name: 'Jake', prefers: ['Starbucks', 'Dunkin', 'Hipster Brew']},
   {id: '6', name: 'Katie', prefers: ['Subway', 'Dunkin', 'Starbucks', 'Nebraska Steak']}]
+let finishedMatches = []
 
-const getUserIndex = (id) => {
-  for (let i = 0; i < users.length; i++) {
-    if (id === users[i].id)
+const getUserIndex = (id, arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (id === arr[i].id)
       return i
     }
   return null
 }
 
 const findOverlap = (id) => {
-  const searcher = users[getUserIndex(id)], matches = []
+  const searcher = users[getUserIndex(id, users)], matches = []
 
   if (!searcher.prefers) return
 
@@ -58,11 +59,21 @@ const randomPick = (matches) => {
 router.get('/user/:id', ctx => {
   // ctx.set({"Access-Control-Allow-Origin": "*",
   //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"})
-  ctx.body = users[getUserIndex(ctx.params.id)]
+  ctx.body = users[getUserIndex(ctx.params.id, users)]
 })
 
 router.get('/user/:id/search', ctx => {
-  ctx.body = randomPick(findOverlap(ctx.params.id))
+  const i = getUserIndex(ctx.params.id, finishedMatches)
+  if (i) {
+    ctx.body = finishedMatches[i]
+    delete finishedMatches[i]
+    return
+  }
+  const match = randomPick(findOverlap(ctx.params.id))
+  if (match) {
+    finishedMatches.push(match)
+  }
+  ctx.body = match
 })
 
 router.post('/user/new', ctx => {
@@ -77,8 +88,8 @@ router.post('/user/new', ctx => {
 
 router.post('/user/:id', ctx => {
   if (ctx.request.body && ctx.request.body.prefers && ctx.params.id) {
-    users[getUserIndex(ctx.params.id)].prefers = ctx.request.body.prefers
-    ctx.body = users[getUserIndex(ctx.params.id)].prefers
+    users[getUserIndex(ctx.params.id, users)].prefers = ctx.request.body.prefers
+    ctx.body = users[getUserIndex(ctx.params.id, users)].prefers
     return
   }
   ctx.body = "No preference update"
