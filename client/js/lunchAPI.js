@@ -38,7 +38,7 @@ function enterSearchMode() {
     }
     $.get("http://localhost:3000/user/"+id+"/search", function(data) {
       if (data) {
-        console.log(data);
+        $("#result").html("Lunch with " + data.name + " at " + data.venue);
         count = 5;
       }
     })
