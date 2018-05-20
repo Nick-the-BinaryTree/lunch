@@ -23,25 +23,15 @@ $('#submitName').click(function() {
 function setPrefs() {
   $.post('http://localhost:3000/user/'+id,
     { prefers: ['Subway', 'Dunkin', 'Olive Garden'] },
-    function(data) { enterSearchMode(); },
+    function(data) { console.log(data); enterSearchMode(); },
     'json'
   )
-}
-
-function search() {
-  let res = null;
-
-  $.get("http://localhost:3000/user/"+id+"/search", function(data) {
-    console.log(data);
-    res = data;
-  })
-  console.log(res)
-  return res;
 }
 
 // TODO wrap in "search" button click
 function enterSearchMode() {
   var count = 0;
+  console.log("got to search mode");
   var intervalId = setInterval(function() {
     if (count >= 5){
       clearInterval(intervalId);
@@ -49,7 +39,7 @@ function enterSearchMode() {
     }
     $.get("http://localhost:3000/user/"+id+"/search", function(data) {
       if (data) {
-        console.log(data);
+        console.log(data)
         $("#result").html("Lunch with " + data.name + " at " + data.venue);
         count = 5;
       }
@@ -57,4 +47,3 @@ function enterSearchMode() {
     count++;
   }, 2000)
 }
-
