@@ -9,3 +9,19 @@ body {
   max-width: 40em;
   margin-left: 1em;
 }
+
+#step2 {
+  display: none;
+}
+
+#step3 {
+  display: none;
+}
+
+#step4 {
+  display: none;
+}
+
+#map {
+  margin-bottom: 2em;
+}

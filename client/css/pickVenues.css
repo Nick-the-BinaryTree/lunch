@@ -3,7 +3,7 @@
 }
 
 .option {
-  width: 25em;
+  width: 20em;
   text-align: center;
   padding: 1em;
   margin-bottom: 2em;
@@ -22,12 +22,12 @@
 }
 
 #result {
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: "sans";
 }
 
 #prefSubmit {
-  font-size: : 2em;
+  font-size: : 1.5em;
   padding: 1em;
   margin: 1em;
   margin-left: 1.5em;

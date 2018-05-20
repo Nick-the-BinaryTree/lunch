@@ -14,16 +14,16 @@ var id = null;
 $('#submitName').click(function() {
     $.post('http://localhost:3000/user/new',
       { name: $('#nameBox').val() },
-      function(data) { id = data.id; setPrefs(); },
+      function(data) { id = data.id; },
       'json'
     )
 })
 
 // TODO wrap in "choose venues" button click like above later
-function setPrefs() {
+function setPrefs(prefs) {
   $.post('http://localhost:3000/user/'+id,
-    { prefers: ['Subway', 'Dunkin', 'Olive Garden'] },
-    function(data) { console.log(data); enterSearchMode(); },
+    { prefers: prefs },
+    function(data) { enterSearchMode(); },
     'json'
   )
 }

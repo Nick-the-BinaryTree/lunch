@@ -36,7 +36,7 @@ $("#prefSubmit").click(function(e) {
   $(".option_picked").each(function() {
       results.push(this.children[0].innerText)
   });
-  console.log(results);
+  setPrefs(results)
 })
 
 // getVenues()

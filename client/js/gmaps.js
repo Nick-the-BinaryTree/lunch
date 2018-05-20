@@ -77,8 +77,8 @@ function coordinates()
 
 // On end of Step 1:  // NOTE: Step 2 is bypassed here!
 $('#submitName').click(function() {
-    document.getElementById('step1').style.visibility = 'hidden';
-    document.getElementById('step3').style.visibility = 'visible';
+  $('#step1').hide();
+  $('#step3').show();
     // geolocate();  // Disabled to reduce API calls
     // address();  // Disabled to reduce API calls
     //$('#mapBox').value(location);
@@ -97,6 +97,6 @@ $('#mapIt').click(function() {
 
 // On end of Step 3:
 $('#prefSubmit').click(function() {
-    document.getElementById('step3').style.visibility = 'hidden';
-    document.getElementById('step4').style.visibility = 'visible';
+  $('#step3').hide();
+  $('#step4').show();
 })
