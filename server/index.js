@@ -6,8 +6,9 @@ const app = new Koa()
 const router = new Router()
 
 let idCount = 0
-let users = [{id: '5', name: 'Jake', prefers: ['Starbucks', 'Dunkin', 'Hipster Brew']},
-  {id: '6', name: 'Katie', prefers: ['Subway', 'Dunkin', 'Starbucks', 'Nebraska Steak']}]
+let users = []
+// let users = [{id: '5', name: 'Jake', prefers: ['Starbucks', 'Dunkin', 'Hipster Brew']},
+//   {id: '6', name: 'Katie', prefers: ['Subway', 'Dunkin', 'Starbucks', 'Nebraska Steak']}]
 let finishedMatches = []
 
 const getUserIndex = (id, arr) => {
@@ -63,11 +64,13 @@ router.get('/user/:id', ctx => {
 })
 
 router.get('/user/:id/search', ctx => {
-  const i = getUserIndex(ctx.params.id, finishedMatches)
-  if (i) {
-    ctx.body = finishedMatches[i]
-    delete finishedMatches[i]
-    return
+  if (finishedMatches) {
+    const i = getUserIndex(ctx.params.id, finishedMatches)
+    if (i) {
+      ctx.body = finishedMatches[i]
+      delete finishedMatches[i]
+      return
+    }
   }
   const match = randomPick(findOverlap(ctx.params.id))
   if (match) {

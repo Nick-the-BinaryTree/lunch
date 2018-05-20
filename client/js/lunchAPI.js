@@ -33,17 +33,18 @@ function enterSearchMode() {
   var count = 0;
   console.log("got to search mode");
   var intervalId = setInterval(function() {
-    if (count >= 5){
+    if (count >= 10){
       clearInterval(intervalId);
       return;
     }
     $.get("http://localhost:3000/user/"+id+"/search", function(data) {
       if (data) {
-        console.log(data)
-        $("#result").html("Lunch with " + data.name + " at " + data.venue);
-        count = 5;
+        console.log(data);
+        $("<p id='result'>Lunch with " + data.name + " at " + data.venue +"</p>").appendTo($("#step4"));
+        count = 10;
       }
     })
     count++;
-  }, 2000)
+    console.log("searching... " + count)
+  }, 3000)
 }
