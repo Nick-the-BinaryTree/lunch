@@ -74,7 +74,8 @@ router.get('/user/:id/search', ctx => {
   }
   const match = randomPick(findOverlap(ctx.params.id))
   if (match) {
-    finishedMatches.push(match)
+    const searcher = users[getUserIndex(ctx.params.id, users)]
+    finishedMatches.push({id: match.id, name: searcher.name, venue: match.venue})
   }
   ctx.body = match
 })
