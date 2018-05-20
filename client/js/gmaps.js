@@ -20,7 +20,6 @@ var latitude = 40.7, longitude = -74.0;
  * Relies on jQuery.  */
 function geolocate()
 {
-    var coord = { 40.7, -74.0};
     latitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').location.lat);
     longitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').location.lng);
 }
