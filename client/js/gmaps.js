@@ -22,8 +22,8 @@ function geolocate()
 {
     console.log(latitude);
     console.log(longitude);
-    latitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').location.lat);
-    longitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').location.lng);
+    latitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=YOURAPIKEY').location.lat);
+    longitude = parseFloat($.post('https://www.googleapis.com/geolocation/v1/geolocate?key=YOURAPIKEY').location.lng);
     console.log(latitude);
     console.log(longitude);
 }
@@ -46,7 +46,7 @@ function initMap()
  * API for reverse-geocoding.  */
 function address()
 {
-    location = parse($post('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').results[0].formatted_address);
+    location = parse($post('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&key=YOURAPIKEY').results[0].formatted_address);
 }
 
 /* plusser:
@@ -67,8 +67,8 @@ function plusser()
 function coordinates()
 {
     var temp = plusser();
-    latitude = parseFloat($.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + temp +'&key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').results[0].geometry.lat);
-    longitude = parseFloat($.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + temp +'&key=AIzaSyCNzDoImjaJiJiJtJwDhH3izGN2uN7-gjs').results[0].geometry.lng);
+    latitude = parseFloat($.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + temp +'&key=YOURAPIKEY').results[0].geometry.lat);
+    longitude = parseFloat($.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + temp +'&key=YOURAPIKEY').results[0].geometry.lng);
 }
 
 
