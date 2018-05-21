@@ -13,7 +13,7 @@ let finishedMatches = []
 
 const getUserIndex = (id, arr) => {
   for (let i = 0; i < arr.length; i++) {
-    if (id === arr[i].id)
+    if (arr[i] && id === arr[i].id)
       return i
     }
   return null
@@ -64,18 +64,22 @@ router.get('/user/:id', ctx => {
 })
 
 router.get('/user/:id/search', ctx => {
+  const searcher = users[getUserIndex(ctx.params.id, users)]
+
   if (finishedMatches) {
     const i = getUserIndex(ctx.params.id, finishedMatches)
-    if (i) {
-      ctx.body = finishedMatches[i]
+
+    if (i !== null) {
+      ctx.body = Object.assign({}, finishedMatches[i])
       delete finishedMatches[i]
+      searcher.prefers = []
       return
     }
   }
   const match = randomPick(findOverlap(ctx.params.id))
   if (match) {
-    const searcher = users[getUserIndex(ctx.params.id, users)]
     finishedMatches.push({id: match.id, name: searcher.name, venue: match.venue})
+    searcher.prefers = []
   }
   ctx.body = match
 })
